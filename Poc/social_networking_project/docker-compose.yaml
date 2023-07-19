@@ -1,9 +1,11 @@
 version: '3.2.20'
 services:
-  my-nginx-service:
-    container_name: ocial_networking_project
-    image: my-nginx-image:latest
-    cpus: 1.5
-    mem_limit: 2048m
-    ports:
-      - "8080:80"
+  app:
+    build:
+      volumes:
+         - .:/django
+      ports:
+        -8000:8000
+      image: social_networking_app:django
+      container_name : django_container
+      command: python manage.py runserver 0.0.0.0:8000
